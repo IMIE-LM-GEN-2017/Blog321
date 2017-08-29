@@ -11,6 +11,23 @@
 |
 */
 
-Route::get('/pages/about', function () {
-    return view('accueil');
-});
+Route::get('/', function () {
+    return view('welcome');
+})->name('home');
+Route::get('/users', 'User@index')->name('UserIndex');
+Route::get('/categories', 'Category@index')->name('CatIndex');
+Route::get('/category/new', 'Category@add')->name('NewCat');
+
+
+
+
+
+
+
+
+
+
+
+
+
+
