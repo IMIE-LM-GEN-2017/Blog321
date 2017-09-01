@@ -19,6 +19,24 @@
             <a class="navbar-item " href="{{ route('CatIndex') }}">
                 Categories
             </a>
+            <a class="navbar-item " href="{{ route('login') }}">
+                Login
+            </a>
+            <a class="navbar-item " href="{{ route('register') }}">
+                Inscription
+            </a>
         </div>
     </div>
 </nav>
+
+
+
+
+
+
+
+
+
+
+
+

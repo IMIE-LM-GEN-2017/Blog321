@@ -42,18 +42,4 @@ Route::group(['prefix' => 'admin'], function () {
     Route::get('/tag/{id}/delete', 'Admin\TagController@delete')->name('AdminDelTag');
 });
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+Auth::routes();
