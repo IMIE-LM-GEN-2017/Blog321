@@ -2,97 +2,93 @@
 
 namespace App\Http\Controllers\Admin;
 
-use App\Category as CategoryModel;
+use App\Category;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Session;
 
 class CategoryController extends Controller
 {
     /**
-     * Displays the list of categories
+     * Display a listing of the resource.
      *
-     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
+     * @return \Illuminate\Http\Response
      */
     public function index()
     {
-        $categories = DB::table('categories')->get();
-
-        return view('admin.category.index', ['categories' => $categories]);
+        $categories = Category::all();
+        return view('admin.categories.index', ['categories' => $categories]);
     }
 
     /**
-     * Shows the form to create a category
+     * Show the form for creating a new resource.
      *
-     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
+     * @return \Illuminate\Http\Response
      */
-    public function add()
+    public function create()
     {
-        return view('admin.category.add');
+        return view('admin.categories.create');
     }
 
     /**
-     * Saves the new record
+     * Store a newly created resource in storage.
      *
-     * @param Request $request The request object
-     *
-     * @return \Illuminate\Http\RedirectResponse
+     * @param  \Illuminate\Http\Request $request
+     * @return \Illuminate\Http\Response
      */
-    public function create(Request $request)
+    public function store(Request $request)
     {
-        // validation des données
         $this->validate($request, [
             'name' => 'required|string',
         ]);
 
         $data = $request->all();
-        $category = \App\Category::create($data);
+
+        $category = Category::create($data);
 
         // Redirection et message
         if ($category->exists) {
             Session::flash('message', 'Nouvelle catégorie créée');
-            return redirect()->route('CatIndex');
+            return redirect()->route('AdminCatIndex');
         } else {
             Session::flash('message', 'Une erreur est survenue');
-            return redirect()->route('NewCat');
+            return redirect()->route('AdminCatCreate');
         }
-
     }
 
     /**
-     * Deletes a record
+     * Display the specified resource.
      *
-     * @param int $id The record's Id
-     * @param Request $request The Request object
+     * @param  int $id
+     * @return \Illuminate\Http\Response
      */
-    public function delete($id)
+    public function show($id)
     {
-        $category = CategoryModel::findOrFail($id);
-        $category->delete();
+        $category = Category::findOrFail($id);
 
-        Session::flash('message', 'Catégorie supprimée');
+        return view('admin.categories.show', ['category' => $category]);
 
-        return redirect()->route('CatIndex');
     }
 
     /**
-     * Shows the form to edit a record
+     * Display the specified resource.
      *
-     * @param int $id The record's Id
+     * @param  int $id
+     * @return \Illuminate\Http\Response
      */
     public function edit($id)
     {
-        $category = CategoryModel::findOrFail($id);
+        $category = Category::findOrFail($id);
 
-        return view('admin.category.edit', ['category' => $category]);
+        return view('admin.categories.edit', ['category' => $category]);
     }
 
     /**
-     * Updates a record in the DB
+     * Update the specified resource in storage.
      *
-     * @param Request $request The request object
-     * @param int $id The record's Id
+     * @param  \Illuminate\Http\Request $request
+     * @param  int $id The id
+     * @return \Illuminate\Http\Response
      */
     public function update(Request $request, $id)
     {
@@ -100,26 +96,30 @@ class CategoryController extends Controller
         $this->validate($request, [
             'name' => 'required|string',
         ]);
-        $category = CategoryModel::findOrFail($id);
+        $category = Category::findOrFail($id);
 
         if ($category->update($request->all())) {
             Session::flash('message', 'Catégorie mise à jour');
-            return redirect()->route('CatIndex');
+            return redirect()->route('AdminCatIndex');
         } else {
             Session::flash('message', 'Une erreur est survenue lors de la mise à jour');
-            return redirect()->route('EditCat', ['id' => $id]);
+            return redirect()->route('AdminCatEdit', ['id' => $id]);
         }
     }
 
     /**
-     * Displays a record
+     * Remove the specified resource from storage.
      *
-     * @param int $id The record's Id
+     * @param  int $id The Id
+     * @return \Illuminate\Http\Response
      */
-    public function view($id)
+    public function destroy($id)
     {
-        $category = CategoryModel::findOrFail($id);
+        $category = Category::findOrFail($id);
+        $category->delete();
 
-        return view('admin.category.view', ['category' => $category]);
+        Session::flash('message', 'Catégorie supprimée');
+
+        return redirect()->route('AdminCatIndex');
     }
 }

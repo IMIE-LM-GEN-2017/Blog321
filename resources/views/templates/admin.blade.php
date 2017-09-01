@@ -3,7 +3,7 @@
     <title>Blog321 - @yield('title')</title>
 </head>
 <body>
-@component('elements.navbar')
+@component('elements.admin-menu')
 @endcomponent
 
 @if(Session::has('message'))

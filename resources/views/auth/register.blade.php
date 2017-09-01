@@ -1,6 +1,6 @@
 @extends('templates.default')
 
-@section('title', 'Inscription')
+@section('title', 'Register')
 
 @section('content')
     <form method="POST" action="{{ route('register') }}">
@@ -8,33 +8,37 @@
 
         <label for="name">Name</label>
 
-        <input id="name" type="text" name="name" value="{{ old('name') }}" required autofocus>
+        <div>
+            <input id="name" type="text" name="name" value="{{ old('name') }}" required autofocus>
 
-        @if ($errors->has('name'))
-            <strong>{{ $errors->first('name') }}</strong>
-        @endif
+            @if ($errors->has('name'))
+                <strong>{{ $errors->first('name') }}</strong>
+            @endif
 
-        <label for="email">E-Mail Address</label>
+            <label for="email">E-Mail Address</label>
 
-        <input id="email" type="email" name="email" value="{{ old('email') }}" required>
+            <input id="email" type="email" name="email" value="{{ old('email') }}"
+                   required>
 
-        @if ($errors->has('email'))
-            <strong>{{ $errors->first('email') }}</strong>
-        @endif
+            @if ($errors->has('email'))
+                <strong>{{ $errors->first('email') }}</strong>
+            @endif
 
-        <label for="password">Password</label>
+            <label for="password">Password</label>
 
-        <input id="password" type="password" name="password" required>
+            <input id="password" type="password" name="password" required>
 
-        @if ($errors->has('password'))
-            <strong>{{ $errors->first('password') }}</strong>
-        @endif
+            @if ($errors->has('password'))
+                <strong>{{ $errors->first('password') }}</strong>
+            @endif
 
-        <label for="password-confirm">Confirm Password</label>
+            <label for="password-confirm">Confirm Password</label>
 
-        <input id="password-confirm" type="password" name="password_confirmation" required>
+            <input id="password-confirm" type="password" name="password_confirmation"
+                   required>
+        </div>
 
-        <button type="submit">
+        <button type="submit" class="btn btn-primary">
             Register
         </button>
     </form>

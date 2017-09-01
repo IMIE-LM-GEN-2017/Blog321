@@ -5,7 +5,7 @@
 </head>
 <body>
 <div class="container">
-    @component('elements.navbar')
+    @component('elements.public-menu')
     @endcomponent
 
     @if(Session::has('message'))
