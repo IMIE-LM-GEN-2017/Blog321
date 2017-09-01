@@ -1,4 +1,4 @@
-@extends('templates.default')
+@extends('templates.admin')
 
 @section('title', 'Liste des catégories')
 
@@ -18,7 +18,13 @@
                 <td>
                     <div class="field has-addons">
                         <p class="control">
-                            <a href="{{ route('ViewCat', ['id'=>$category->id]) }}" class="button is-small is-primary">Afficher</a>
+                            <a href="{{ route('AdminDelCat', ['id'=>$category->id]) }}" class="button is-small is-danger">Supprimer</a>
+                        </p>
+                        <p class="control">
+                            <a href="{{ route('AdminEditCat', ['id'=>$category->id]) }}" class="button is-small is-primary">Editer</a>
+                        </p>
+                        <p class="control">
+                            <a href="{{ route('AdminViewCat', ['id'=>$category->id]) }}" class="button is-small is-primary"><i class="fa fa-trash"></i></a>
                         </p>
                     </div>
                 </td>

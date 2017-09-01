@@ -181,7 +181,8 @@ return [
          * HTML + Form helper
          */
         Collective\Html\HtmlServiceProvider::class,
-
+        // IDE Helper
+        Barryvdh\LaravelIdeHelper\IdeHelperServiceProvider::class,
     ],
 
     /*

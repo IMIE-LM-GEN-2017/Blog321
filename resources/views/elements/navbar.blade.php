@@ -19,9 +19,6 @@
             <a class="navbar-item " href="{{ route('CatIndex') }}">
                 Categories
             </a>
-            <a class="navbar-item " href="{{ route('NewCat') }}">
-                Nouvelle catégorie
-            </a>
         </div>
     </div>
 </nav>

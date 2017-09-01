@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers;
 
-class User extends Controller
+class UserController extends Controller
 {
     public function index()
     {

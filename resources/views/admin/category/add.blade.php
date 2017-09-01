@@ -1,11 +1,11 @@
-@extends('templates.default')
+@extends('templates.admin')
 
 @section('title', 'Nouvelle catégorie')
 
 @section('content')
 
     <!-- Formulaire -->
-    {!! Form::open(['route' => 'SaveNewCat']) !!}
+    {!! Form::open(['route' => 'AdminSaveNewCat']) !!}
     <div class="field">
         <label for="name" class="label">Nom</label>
         <div class="control">
