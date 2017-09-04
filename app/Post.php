@@ -27,6 +27,6 @@ class Post extends Model
     }
     // Tags
     public function tags(){
-        return $this->hasManyThrough('App\Tag', 'App\PostTags', 'id', 'id', 'post_id', 'tag_id');
+        return $this->belongsToMany('App\Tag');
     }
 }

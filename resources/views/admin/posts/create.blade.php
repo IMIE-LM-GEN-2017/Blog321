@@ -15,8 +15,21 @@
     {!! Form::select('category_id', $categories) !!}
 
     {!! Form::label('Tags du post') !!}
-    {!! Form::select('tags', $tags, null, ['multiple'=>true]) !!}
+    {!! Form::select('post.tags[]', $tags, null, ['multiple'=>true]) !!}
 
     {!! Form::submit('Enregistrer') !!}
     {!! Form::close() !!}
 @endsection
+
+
+
+
+
+
+
+
+
+
+
+
+

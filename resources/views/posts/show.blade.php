@@ -3,8 +3,11 @@
 @section('title', $post->title)
 
 @section('content')
+    Tags :
+    @foreach($post->tags as $tag)
+        <i class="fa fa-tag"></i> {{ $tag->tag }},
+    @endforeach
     <pre>
-        {{var_dump($post->tags)}}
         <hr>
         {{var_dump($post->id)}}
         {{var_dump($post->title)}}

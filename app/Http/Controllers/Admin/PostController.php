@@ -35,7 +35,7 @@ class PostController extends Controller
         return view('admin.posts.create',
             [
                 'categories' => $categories,
-                'tags'=>$tags,
+                'tags' => $tags,
             ]);
     }
 
@@ -53,7 +53,15 @@ class PostController extends Controller
             'category_id' => 'required|exists:categories,id',
         ]);
 
+
         $data = $request->all();
+//        var_dump($data);
+//        die;
+        if (isset($data['post_tags'])) {
+            $tags = $data['post_tags'];
+        } else {
+            $tags = [];
+        }
 
         $data['user_id'] = auth()->user()->id;
 
@@ -61,6 +69,9 @@ class PostController extends Controller
 
         // Redirection et message
         if ($post->exists) {
+            if (count($tags) > 0) {
+                $post->tags()->attach($tags);
+            }
             Session::flash('message', 'Nouveau post créé');
             return redirect()->route('AdminPostIndex');
         } else {

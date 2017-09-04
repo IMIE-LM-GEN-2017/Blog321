@@ -10,7 +10,7 @@ class Tag extends Model
 
     public function posts()
     {
-        return $this->hasManyThrough('App\Post', 'posts_tags');
+        return $this->belongsToMany('App\Post');
     }
 
 
