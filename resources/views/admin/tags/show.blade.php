@@ -1,10 +1,14 @@
 @extends('templates.admin')
 
-@section('title', 'Affichage d\'un tag')
+@section('title', 'Tag '.$tag->tag)
 
 @section('content')
-    {{var_dump($tag->id)}}
-    {{var_dump($tag->tag)}}
-    {{var_dump($tag->created_at)}}
-    {{var_dump($tag->updated_at)}}
+    <a href="{{ route('AdminTagDestroy', ['id'=>$tag->id]) }}" class="button is-danger">Supprimer</a>
+    <a href="{{ route('AdminTagEdit', ['id'=>$tag->id]) }}" class="button is-primary">Editer</a>
+    <pre>
+        {{var_dump($tag->id)}}
+        {{var_dump($tag->tag)}}
+        {{var_dump($tag->created_at)}}
+        {{var_dump($tag->updated_at)}}
+    </pre>
 @endsection

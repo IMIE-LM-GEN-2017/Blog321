@@ -1,10 +1,7 @@
 @extends('templates.default')
 
-@section('title', 'Affichage d\'un tag')
+@section('title', 'Tag : '.$tag->tag)
 
 @section('content')
-    {{var_dump($tag->id)}}
-    {{var_dump($tag->tag)}}
-    {{var_dump($tag->created_at)}}
-    {{var_dump($tag->updated_at)}}
+    <p>Ici, la liste des articles</p>
 @endsection

@@ -6,13 +6,13 @@
     <form method="POST" action="{{ route('register') }}">
         {{ csrf_field() }}
 
-        <label for="name">Name</label>
+        <label for="pseudo">Pseudo</label>
 
         <div>
-            <input id="name" type="text" name="name" value="{{ old('name') }}" required autofocus>
+            <input id="pseudo" type="text" name="pseudo" value="{{ old('pseudo') }}" required autofocus>
 
-            @if ($errors->has('name'))
-                <strong>{{ $errors->first('name') }}</strong>
+            @if ($errors->has('pseudo'))
+                <strong>{{ $errors->first('pseudo') }}</strong>
             @endif
 
             <label for="email">E-Mail Address</label>

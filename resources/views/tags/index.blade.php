@@ -1,26 +1,27 @@
+<?php
+/**
+ * @var \Illuminate\Database\Eloquent\Collection $tags
+ */
+?>
+
 @extends('templates.default')
 
 @section('title', 'Liste des tags')
 
 @section('content')
-    <table class="table">
-        <thead>
-        <tr>
-            <td>Actions</td>
-            <td>id</td>
-            <td>tag</td>
-        </tr>
-        </thead>
-        <tbody>
-        @foreach($tags as $tag)
-            <tr>
-                <td>
-                    <a href="{{route('TagShow', ['id'=>$tag->id])}}">Afficher</a>
-                </td>
-                <td>{{$tag->id}}</td>
-                <td>{{$tag->tag}}</td>
-            </tr>
-        @endforeach
-        </tbody>
-    </table>
+    @if(count($tags) === 0)
+        <div class="message is-info">
+            <div class="message-body">
+                Il n'y a pas encore de tags. Revenez plus tard..;
+            </div>
+        </div>
+    @else
+        <div class="tags">
+            @foreach($tags as $tag)
+                <span class="tag">
+                    <a href="{{ route('TagShow', ['id'=>$tag->id]) }}">{{ $tag->tag }}</a>
+                </span>
+            @endforeach
+        </div>
+    @endif
 @endsection

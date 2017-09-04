@@ -37,8 +37,8 @@
                 <td>{{$user->birthday}}</td>
                 <td>{{$user->portfolio_url}}</td>
                 <td>{{$user->website_url}}</td>
-                <td>{{$user->created}}</td>
-                <td>{{$user->updated}}</td>
+                <td>{{$user->created_at}}</td>
+                <td>{{$user->updated_at}}</td>
             </tr>
         @endforeach
         </tbody>

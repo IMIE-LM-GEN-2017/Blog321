@@ -51,7 +51,7 @@ class UserController extends Controller
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request $request
-     * @param  int $id The id
+     * @param  int                      $id The id
      * @return \Illuminate\Http\Response
      */
     public function update(Request $request, $id)
@@ -85,5 +85,10 @@ class UserController extends Controller
         Session::flash('message', 'Utilisateur supprimé');
 
         return redirect()->route('AdminUserIndex');
+    }
+
+    public function dashboard()
+    {
+        return view('admin.users.dashboard');
     }
 }

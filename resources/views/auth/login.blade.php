@@ -3,35 +3,27 @@
 @section('title', 'Login')
 
 @section('content')
-    <form method="POST" action="{{ route('login') }}">
-        {{ csrf_field() }}
+    {!! Form::open(['route'=>'login']) !!}
 
-        <label for="email">E-Mail Address</label>
+    {!! Form::label('email', 'Adresse email', ['class'=>'label']) !!}
+    {!! Form::email('email', old('email'), ['required', 'autofocus', 'class'=>'input']) !!}
+    @if ($errors->has('email'))
+        <strong>{{ $errors->first('email') }}</strong>
+    @endif
 
-        <input id="email" type="email" name="email" value="{{ old('email') }}" required autofocus>
+    {!! Form::label('password', 'Mot de passe', ['class'=>'label']) !!}
+    {!! Form::password('password', ['required', 'autofocus', 'class'=>'input']) !!}
+    @if ($errors->has('password'))
+        <strong>{{ $errors->first('password') }}</strong>
+    @endif
 
-        @if ($errors->has('email'))
-            <strong>{{ $errors->first('email') }}</strong>
-        @endif
+    <label for="remember" class="label">
+        {!! Form::checkbox('remember', old('remember'), ['id'=>'remember', 'class'=>'checkbox']) !!} Se souvenir de moi
+    </label>
 
-        <label for="password">Password</label>
+    {!! Form::submit('Login', ['class'=>'button is-primary']) !!}
 
-        <input id="password" type="password" name="password" required>
+    {!! Form::close() !!}
 
-        @if ($errors->has('password'))
-            <strong>{{ $errors->first('password') }}</strong>
-        @endif
-
-        <label>
-            <input type="checkbox" name="remember" {{ old('remember') ? 'checked' : '' }}> Remember Me
-        </label>
-
-        <button type="submit">
-            Login
-        </button>
-
-        <a href="{{ route('password.request') }}">
-            Forgot Your Password?
-        </a>
-    </form>
+    <a href="{{ route('password.request') }}">Vous avez oublié votre mot de passe ?</a>
 @endsection

@@ -23,8 +23,8 @@
                 <td>{{$category->id}}</td>
                 <td>{{$category->name}}</td>
                 <td>{{$category->description}}</td>
-                <td>{{$category->created}}</td>
-                <td>{{$category->updated}}</td>
+                <td>{{$category->created_at}}</td>
+                <td>{{$category->updated_at}}</td>
             </tr>
         @endforeach
         </tbody>

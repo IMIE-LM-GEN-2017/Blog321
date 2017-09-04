@@ -1,9 +1,6 @@
 <nav class="navbar ">
     <div class="navbar-brand">
-        <a class="navbar-item" href="#">
-            Blog321
-        </a>
-
+        <a class="navbar-item" href="{{ url('/') }}">Blog321</a>
         <div class="navbar-burger burger" data-target="navMenubd">
             <span></span>
             <span></span>
@@ -13,35 +10,14 @@
 
     <div id="navMenubd" class="navbar-menu">
         <div class="navbar-start">
-            <a class="navbar-item " href="{{ route('UserIndex') }}">
-                Membres
-            </a>
-            <a class="navbar-item " href="{{ route('CatIndex') }}">
-                Catégories
-            </a>
-            <a class="navbar-item " href="{{ route('TagIndex') }}">
-                Tags
-            </a>
-            <a class="navbar-item " href="{{ route('AdminCatIndex') }}">
-                [ADMIN]
-            </a>
-            @if(Auth::guest())
-                <a class="navbar-item " href="{{ route('login') }}">
-                    Login
-                </a>
-                <a class="navbar-item " href="{{ route('register') }}">
-                    Inscription
-                </a>
-            @else
-                <a class="navbar-item " href="{{ route('logout') }}"
-                   onclick="event.preventDefault();
-               document.getElementById('logout-form').submit();">
-                    Logout
-                </a>
-                <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
-                    {{ csrf_field() }}
-                </form>
-            @endif
+            <a class="navbar-item" href="{{ route('PostIndex') }}"><i class="fa fa-fw fa-file-text-o"></i> Posts</a>
+            <a class="navbar-item" href="{{ route('UserIndex') }}"><i class="fa fa-fw fa-users"></i> Membres</a>
+            <a class="navbar-item" href="{{ route('CatIndex') }}"><i class="fa fa-fw fa-book"></i> Catégories</a>
+            <a class="navbar-item" href="{{ route('TagIndex') }}"><i class="fa fa-fw fa-tags"></i> Tags</a>
+        </div>
+
+        <div class="navbar-end">
+            @component('elements.user-menu')@endcomponent
         </div>
     </div>
 </nav>
