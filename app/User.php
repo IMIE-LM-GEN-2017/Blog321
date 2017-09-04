@@ -2,9 +2,9 @@
 
 namespace App;
 
-use Illuminate\Foundation\Auth\User as Authenticatable;
+use Illuminate\Database\Eloquent\Model;
 
-class User extends Authenticatable
+class User extends Model
 {
     public $fillable = [
         'pseudo',
@@ -16,4 +16,22 @@ class User extends Authenticatable
         'birthdate',
         'portfolio_url',
     ];
+
+    public function posts(){
+        return $this->hasMany('App\Post');
+    }
+
+    public function comments(){
+        return $this->hasMany('App\Comment');
+    }
+
+
+
+
+
+
+
+
+
+
 }
