@@ -15,7 +15,7 @@ class Post extends Model
     
     // User
     public function user(){
-        return $this->hasOne('App\User');
+        return $this->belongsTo('App\User');
     }
     // Comments
     public function comments(){
@@ -23,10 +23,10 @@ class Post extends Model
     }
     // Categories
     public function category(){
-        return $this->hasOne('App\Category');
+        return $this->belongsTo('App\Category');
     }
     // Tags
     public function tags(){
-        return $this->hasManyThrough('App\tag', 'posts_tags');
+        return $this->hasManyThrough('App\Tag', 'App\PostTags', 'id', 'id', 'post_id', 'tag_id');
     }
 }

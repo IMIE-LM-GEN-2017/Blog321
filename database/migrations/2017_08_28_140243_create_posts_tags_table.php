@@ -13,12 +13,12 @@ class CreatePostsTagsTable extends Migration
      */
     public function up()
     {
-        Schema::create('posts_tags', function (Blueprint $table){
+        Schema::create('post_tag', function (Blueprint $table){
             $table->increments('id');
-            $table->integer('user_id')->unsigned();
+            $table->integer('post_id')->unsigned();
             $table->integer('tag_id')->unsigned();
 
-            $table->foreign('user_id')->references('id')->on('users');
+            $table->foreign('post_id')->references('id')->on('posts');
             $table->foreign('tag_id')->references('id')->on('tags');
         });
     }
@@ -30,6 +30,6 @@ class CreatePostsTagsTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('posts_tags');
+        Schema::dropIfExists('post_tag');
     }
 }
