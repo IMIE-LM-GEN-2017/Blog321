@@ -24,7 +24,7 @@ Route::get('/', 'PostController@index')->name('PostIndex');
 Route::get('/post/{id}', 'PostController@show')->name('PostShow');
 
 
-Route::group(['prefix' => 'admin'], function () {
+Route::group(['prefix' => 'admin', 'middleware' => 'can:access-admin'], function () {
     Route::get('/users', 'Admin\UserController@index')->name('AdminUserIndex');
     Route::get('/user/{id}', 'Admin\UserController@show')->name('AdminUserShow');
     Route::get('/user/{id}/edit', 'Admin\UserController@edit')->name('AdminUserEdit');
